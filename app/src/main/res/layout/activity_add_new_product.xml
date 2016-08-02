@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin"
+    tools:context="com.example.android.inventoryapp.AddNewProductActivity">
+
+    <LinearLayout
+        android:id="@+id/nameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/AddProductLabelStyle"
+            android:text="@string/name" />
+
+        <EditText
+            android:id="@+id/etName"
+            style="@style/EditTextStyle"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/priceLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameLayout">
+
+        <TextView
+            style="@style/AddProductLabelStyle"
+            android:text="@string/price" />
+
+        <EditText
+            android:id="@+id/etPrice"
+            style="@style/EditTextStyle"
+            android:inputType="number"
+            android:maxLength="@dimen/length" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/quantityLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceLayout">
+
+        <TextView
+            style="@style/AddProductLabelStyle"
+            android:text="@string/quantity" />
+
+        <EditText
+            android:id="@+id/etQuantity"
+            style="@style/EditTextStyle"
+            android:inputType="number"
+            android:maxLength="@dimen/length" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/supplierLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/quantityLayout">
+
+        <TextView
+            style="@style/AddProductLabelStyle"
+            android:text="@string/supplier" />
+
+        <EditText
+            android:id="@+id/etSupplierName"
+            style="@style/EditTextStyle"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/supplierContactLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/supplierLayout">
+
+        <TextView
+            style="@style/AddProductLabelStyle"
+            android:text="@string/supplierEmail" />
+
+        <EditText
+            android:id="@+id/etSupplierContact"
+            style="@style/EditTextStyle"
+            android:inputType="textEmailAddress" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/imageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/supplierContactLayout"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+        <TextView
+            style="@style/AddProductLabelStyle"
+            android:text="@string/product_image" />
+
+        <TextView
+            android:id="@+id/takePhoto"
+            android:layout_width="@dimen/size0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@android:drawable/ic_menu_camera"
+            android:gravity="center"
+            android:text="@string/take_photo" />
+
+
+        <TextView
+            android:id="@+id/openGallery"
+            android:layout_width="@dimen/size0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@android:drawable/ic_menu_gallery"
+            android:gravity="center"
+            android:text="@string/open_gallery" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageLayout"
+        android:layout_marginTop="@dimen/size24"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/addImage"
+            android:layout_width="@dimen/size100"
+            android:layout_height="@dimen/size100"
+            android:contentDescription="@string/product_image"
+            android:src="@drawable/info" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="@dimen/size100"
+            android:layout_height="@dimen/size100"
+            android:contentDescription="@string/product_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/info" />
+
+        <TextView
+            android:id="@+id/lbName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/productImage"
+            android:padding="@dimen/size8"
+            android:text="@string/name" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/lbName"
+            android:padding="@dimen/size8"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            tools:text="@string/sample" />
+
+        <TextView
+            android:id="@+id/lbPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvName"
+            android:layout_toRightOf="@id/productImage"
+            android:padding="@dimen/size8"
+            android:text="@string/price" />
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvName"
+            android:layout_toRightOf="@id/lbPrice"
+            android:padding="@dimen/size8"
+            tools:text="@string/sample" />
+
+        <TextView
+            android:id="@+id/lbQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvPrice"
+            android:layout_toRightOf="@id/productImage"
+            android:padding="@dimen/size8"
+            android:text="@string/quantity" />
+
+        <TextView
+            android:id="@+id/tvQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvPrice"
+            android:layout_toRightOf="@id/lbQuantity"
+            android:padding="@dimen/size8"
+            tools:text="@string/sample" />
+
+
+        <LinearLayout
+            android:id="@+id/quantityLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productImage"
+            android:padding="@dimen/size8">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/update" />
+
+            <EditText
+                android:id="@+id/etQuantity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/quantityLayout"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/bAddQuantity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/increase" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    tools:text="@string/quantity" />
+
+                <Button
+                    android:id="@+id/bReduceQuantity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/reduce" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="5" />
+
+                <Button
+                    android:id="@+id/bUpdatePrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/update_price" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/bOrderMore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/order_more" />
+
+            <Button
+                android:id="@+id/bTrackSale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sale" />
+
+            <Button
+                android:id="@+id/bDeleteProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_product" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
