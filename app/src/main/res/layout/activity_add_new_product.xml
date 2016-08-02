@@ -35,7 +35,7 @@
             android:id="@+id/etPrice"
             style="@style/EditTextStyle"
             android:inputType="number"
-            android:maxLength="@dimen/length" />
+            android:maxLength="5" />
     </LinearLayout>
 
     <LinearLayout
@@ -52,7 +52,7 @@
             android:id="@+id/etQuantity"
             style="@style/EditTextStyle"
             android:inputType="number"
-            android:maxLength="@dimen/length" />
+            android:maxLength="5" />
     </LinearLayout>
 
     <LinearLayout
