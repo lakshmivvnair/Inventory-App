@@ -60,7 +60,10 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             Uri photoUri = Uri.parse(temp);
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = 8;
-            selectedImage = BitmapFactory.decodeFile(CommonHelper.getRealPathFromUri(getContext(), photoUri), options);
+            selectedImage = BitmapFactory.decodeFile(temp, options);
+            if (selectedImage == null) {
+                selectedImage = BitmapFactory.decodeFile(CommonHelper.getRealPathFromUri(getContext(), photoUri), options);
+            }
             productImage.setImageBitmap(selectedImage);
         } else {
             productImage.setImageResource(R.drawable.info);

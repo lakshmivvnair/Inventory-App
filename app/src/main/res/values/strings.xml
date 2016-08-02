@@ -38,4 +38,7 @@
     <string name="save_product">Save Product</string>
     <string name="valid_email_message">Enter valid email address</string>
     <string name="go_to_settings">Go to settings</string>
+    <string name="date_time_format">yyyyMMdd_HHmmss</string>
+    <string name="jpeg">JPEG_</string>
+    <string name="content">content://</string>
 </resources>

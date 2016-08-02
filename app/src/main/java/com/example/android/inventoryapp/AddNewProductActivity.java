@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -18,7 +20,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AddNewProductActivity extends AppCompatActivity {
 
@@ -99,7 +104,7 @@ public class AddNewProductActivity extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (data != null) {
+        if (requestCode == PICK_PHOTO_CODE && data != null) {
             Uri photoUri = data.getData();
             imageUri = photoUri.toString();
             Bitmap selectedImage = null;
@@ -110,6 +115,9 @@ public class AddNewProductActivity extends AppCompatActivity {
             }
             ImageView productImage = (ImageView) findViewById(R.id.addImage);
             productImage.setImageBitmap(selectedImage);
+        }
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            loadImageFromFile();
         }
     }
 
@@ -182,7 +190,18 @@ public class AddNewProductActivity extends AppCompatActivity {
     private void takePhoto() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
         } else {
             Toast.makeText(this, R.string.no_apps_found, Toast.LENGTH_LONG).show();
         }
@@ -198,5 +217,46 @@ public class AddNewProductActivity extends AppCompatActivity {
                     CommonHelper.takeToSettings(this);
                 }
         }
+    }
+
+    private File createImageFile() throws IOException {
+        imageUri = "";
+        String timeStamp = new SimpleDateFormat(getString(R.string.date_time_format)).format(new Date());
+        String imageFileName = getString(R.string.jpeg) + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+        imageUri = image.getAbsolutePath();
+        return image;
+    }
+
+    public void loadImageFromFile(){
+
+        ImageView view = (ImageView)this.findViewById(R.id.addImage);
+        view.setVisibility(View.VISIBLE);
+
+        int targetW = view.getWidth();
+        int targetH = view.getHeight();
+
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(imageUri, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(imageUri, bmOptions);
+        view.setImageBitmap(bitmap);
     }
 }

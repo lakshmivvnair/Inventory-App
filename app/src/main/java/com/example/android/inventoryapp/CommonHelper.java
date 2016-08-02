@@ -20,7 +20,7 @@ public class CommonHelper {
 
     public final static int PERMISSION_CODE = 123;
     public final static int REQUEST_PERMISSION_SETTING = 456;
-    private static final String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private static final String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     public static void checkPermission(final Activity context) {
         boolean granted;
@@ -42,7 +42,6 @@ public class CommonHelper {
                     ActivityCompat.requestPermissions(context, new String[]{permission}, PERMISSION_CODE);
                 }
                 MainActivity.permissionGranted = false;
-                break;
             } else {
                 MainActivity.permissionGranted = true;
             }

@@ -143,7 +143,10 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             Uri photoUri = Uri.parse(temp);
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = 8;
-            selectedImage = BitmapFactory.decodeFile(CommonHelper.getRealPathFromUri(this, photoUri), options);
+            selectedImage = BitmapFactory.decodeFile(temp, options);
+            if (selectedImage == null) {
+                selectedImage = BitmapFactory.decodeFile(CommonHelper.getRealPathFromUri(this, photoUri), options);
+            }
             mProductImage.setImageBitmap(selectedImage);
         } else {
             mProductImage.setImageResource(R.drawable.info);
